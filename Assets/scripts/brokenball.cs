@@ -16,6 +16,7 @@ public class brokenball : MonoBehaviour
             child.GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), Random.Range(-10f, 10f)), ForceMode.Impulse);
         }
         
+        Destroy(gameObject, 2f);
     }
 
     // Update is called once per frame

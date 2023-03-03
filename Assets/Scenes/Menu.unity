@@ -206,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 55409287}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 392399064}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: startGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &55409287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1888.9955
+      value: 1588.9954
       objectReference: {fileID: 0}
     - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -592,7 +604,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 170288774}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 392399064}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: quitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &170288774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,7 +667,7 @@ GameObject:
   - component: {fileID: 255039100}
   - component: {fileID: 255039099}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Level Name Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -666,8 +690,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 619, y: 480.001}
-  m_SizeDelta: {x: 1189.4298, y: 119.997986}
+  m_AnchoredPosition: {x: 965.01733, y: 480.001}
+  m_SizeDelta: {x: 1881.4647, y: 119.998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &255039099
 MonoBehaviour:
@@ -1094,6 +1118,173 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379874305}
   m_CullTransparentMesh: 1
+--- !u!1 &392399062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 392399063}
+  - component: {fileID: 392399064}
+  m_Layer: 0
+  m_Name: Menu Manager
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &392399063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392399062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 804.4293, y: 576.3281, z: -0.87808084}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &392399064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392399062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce9450f5d83b504d9f54e59b6c60fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenu: {fileID: 1288313713}
+  levelMenu: {fileID: 2128175091}
+  levelName: {fileID: 255039099}
+  levelDescription: {fileID: 1242502789}
+  levelNames:
+  - Warm-Up Returns Race
+  - Speed Race
+  - Food Race
+  - Outside Race
+  - AMOGUS RACE
+  levelDescriptions:
+  - Warm-Up Race returns, but this time better looking than ever! Your remaining
+    time carries over to the next level, so make sure to go as quickly as possible!
+  - In this race, you will encounter boost panels that speed you very quickly. Make
+    sure to use them to your advantage!
+  - Eat all the burgers you see in this calorie-filled level! As you eat more, you
+    will get fatter and slower, but it might be worth it...
+  - No more are we rolling through colorful abstract levels. This time, we are rolling
+    through the outside world! Watch out for the cars!
+  - In this sussy race, you will figure out who the IMPOSTER is! hopefully it's not
+    you... sussy baka
+--- !u!1001 &397111133
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 874747741}
+    m_Modifications:
+    - target: {fileID: 5219606101765665036, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_Name
+      value: Level (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 368.2844
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 362.3224
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2057.2798
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -181.1612
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+--- !u!224 &397111134 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
+  m_PrefabInstance: {fileID: 397111133}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &455257057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,7 +1368,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 455257060}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 392399064}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: backToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &455257060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,7 +1734,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1499517021, guid: fa9fb334407933c4e912fbde5c5bec8e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64068775463d69e47b9960bc0c22c7a5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1896,7 +2099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1320.711
+      value: 1120.7109
       objectReference: {fileID: 0}
     - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1954,8 +2157,9 @@ RectTransform:
   - {fileID: 1332658667}
   - {fileID: 870959268}
   - {fileID: 89400765}
+  - {fileID: 397111134}
   m_Father: {fileID: 2128175095}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1980,7 +2184,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 200
+  m_Spacing: 100
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -2608,7 +2812,7 @@ GameObject:
   - component: {fileID: 1242502790}
   - component: {fileID: 1242502789}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Level Description Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2627,12 +2831,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2128175095}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 619, y: 338.89}
-  m_SizeDelta: {x: 1189.4298, y: 119.997986}
+  m_AnchoredPosition: {x: 619, y: 218.4624}
+  m_SizeDelta: {x: 1189.4298, y: 360.8532}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1242502789
 MonoBehaviour:
@@ -2917,7 +3121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 752.42664
+      value: 652.4266
       objectReference: {fileID: 0}
     - target: {fileID: 5219606101765665037, guid: cb78c197a81768f4e8790cba5f3bb8a7, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3442,8 +3646,8 @@ RectTransform:
   - {fileID: 2137072445}
   - {fileID: 1466666127}
   - {fileID: 255039098}
-  - {fileID: 874747741}
   - {fileID: 1242502788}
+  - {fileID: 874747741}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

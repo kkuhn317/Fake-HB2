@@ -11,10 +11,12 @@ public class SoftbodyRoll : MonoBehaviour
     private float counter = 1f;
 
     public bool stopInput = false;
+    private Player player;
 
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        player = GetComponent<Player>();
     }
 
     void Update()
@@ -25,7 +27,7 @@ public class SoftbodyRoll : MonoBehaviour
             counter = 0;
 
 
-        if (stopInput)
+        if (player.stopInput)
             return;
 
 

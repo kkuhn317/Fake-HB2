@@ -10,18 +10,21 @@ public class wideHampterRoll : MonoBehaviour
 
     public bool stopInput = false;
 
+    private Player player;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        player = GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (stopInput) {
+        if (player.stopInput) {
             return;
         }
         

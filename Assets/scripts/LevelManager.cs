@@ -23,6 +23,8 @@ public class LevelManager : MonoBehaviour
     public bool hasWon = false;
     public bool canContinue = false;
 
+    public float deathHeight = -10f;
+
 
 
     // Start is called before the first frame update
@@ -65,15 +67,17 @@ public class LevelManager : MonoBehaviour
         }
 
         // figure out which kind of player we have
-        if (player.GetComponent<Roll>() != null) {
-            player.GetComponent<Roll>().stopInput = true;
-        } else if (player.GetComponent<SoftbodyRoll>() != null) {
-            player.GetComponent<SoftbodyRoll>().stopInput = true;
-        } else if (player.GetComponent<wideHampterRoll>() != null) {
-            player.GetComponent<wideHampterRoll>().stopInput = true;
-        } else {
-            Debug.Log("No player script found");
-        }
+        // if (player.GetComponent<Roll>() != null) {
+        //     player.GetComponent<Roll>().stopInput = true;
+        // } else if (player.GetComponent<SoftbodyRoll>() != null) {
+        //     player.GetComponent<SoftbodyRoll>().stopInput = true;
+        // } else if (player.GetComponent<wideHampterRoll>() != null) {
+        //     player.GetComponent<wideHampterRoll>().stopInput = true;
+        // } else {
+        //     Debug.Log("No player script found");
+        // }
+
+        player.GetComponent<Player>().stopInput = true;
     }
 
     public void WinLevel() {

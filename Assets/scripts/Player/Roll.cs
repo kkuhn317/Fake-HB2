@@ -20,7 +20,6 @@ public class Roll : MonoBehaviour
     //private float mouseMovementX;
     //private float mouseMovementY;
 
-    public bool stopInput = false;
     public bool grounded = false;
     public ArrayList hitPoints = new ArrayList();
     
@@ -47,7 +46,10 @@ public class Roll : MonoBehaviour
 
     [Header("Checkpoints")]
 
-    public Vector3 respawnPoint;
+
+    public GameObject hamster;
+
+    private Player player;
 
 
     // Start is called before the first frame update
@@ -69,13 +71,15 @@ public class Roll : MonoBehaviour
         }
 
         animator = GetComponent<Animator>();
-        respawnPoint = transform.position;
+
+        player = GetComponent<Player>();
+        
     }
 
     public void GetInput()
 	{
         // you can manually stop input
-        if (stopInput) {
+        if (player.stopInput) {
             movementX = 0;
             movementY = 0;
             return;
@@ -186,15 +190,12 @@ public class Roll : MonoBehaviour
 
     public void breakBall() {
         Instantiate(brokenBall, transform.position, transform.rotation);
-        // move the ball to the respawn point
-        transform.position = respawnPoint;
-        // reset the velocity
-        rb.velocity = Vector3.zero;
-        // reset the angular velocity
-        rb.angularVelocity = Vector3.zero;
-        // reset the rotation
-        transform.rotation = Quaternion.identity;
+
+        player.respawn();
+        
     }
+
+
 
     private void OnTriggerEnter(Collider other) {
         if (other.tag == "safeZone")
@@ -271,6 +272,7 @@ public class Roll : MonoBehaviour
             //resetMouseMovement();
             //this is the direction in the world space we want to move:
             movement = forward * movementY + right * movementX;
+
             if (movement.magnitude > 1)
                 movement.Normalize();
         } else {
