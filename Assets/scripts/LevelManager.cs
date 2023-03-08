@@ -62,29 +62,18 @@ public class LevelManager : MonoBehaviour
         
     }
 
-    GameObject findPlayer() {
-        return GameObject.FindWithTag("Player");
-    }
 
     public void stopPlayer() {
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player == null) {
-            Debug.Log("No player found");
-            return;
+        //GameObject player = GameObject.FindWithTag("Player");
+
+
+        // find all "Player" objects and stop them
+        foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player")) {
+            if (p.GetComponent<Player>() != null) {
+                p.GetComponent<Player>().stopInput = true;
+            }
         }
 
-        // figure out which kind of player we have
-        // if (player.GetComponent<Roll>() != null) {
-        //     player.GetComponent<Roll>().stopInput = true;
-        // } else if (player.GetComponent<SoftbodyRoll>() != null) {
-        //     player.GetComponent<SoftbodyRoll>().stopInput = true;
-        // } else if (player.GetComponent<wideHampterRoll>() != null) {
-        //     player.GetComponent<wideHampterRoll>().stopInput = true;
-        // } else {
-        //     Debug.Log("No player script found");
-        // }
-
-        player.GetComponent<Player>().stopInput = true;
     }
 
     public void WinLevel() {
