@@ -42,6 +42,7 @@
      <Compile Include="Assets\Yuetility-Studios\YueSoftbodyPhysics\Scripts\SimpleControllerP2.cs" />
      <Compile Include="Assets\scripts\LevelManager.cs" />
      <Compile Include="Assets\scripts\Player\SoftbodyRoll.cs" />
+     <Compile Include="Assets\scripts\checkpoint.cs" />
      <Compile Include="Assets\scripts\GlobalVars.cs" />
      <Compile Include="Assets\scripts\goalMaterialChange.cs" />
      <Compile Include="Assets\Yuetility-Studios\YueSoftbodyPhysics\Scripts\SoftbodyEditor.cs" />
@@ -49,14 +50,13 @@
      <Compile Include="Assets\Yuetility-Studios\YueSoftbodyPhysics\Scripts\ShootingBalls.cs" />
      <Compile Include="Assets\scripts\Player\Roll.cs" />
      <Compile Include="Assets\scripts\Player\wideHampterRoll.cs" />
+     <Compile Include="Assets\MenuManager.cs" />
      <Compile Include="Assets\Yuetility-Studios\YueSoftbodyPhysics\Scripts\PDController.cs" />
+     <Compile Include="Assets\scripts\Player\Player.cs" />
      <Compile Include="Assets\Yuetility-Studios\YueSoftbodyPhysics\Scripts\PDTuning.cs" />
+     <Compile Include="Assets\scripts\faceCamera.cs" />
      <Compile Include="Assets\scripts\Cam.cs" />
      <Compile Include="Assets\scripts\Player\HamsterRotation.cs" />
-     <Compile Include="Assets\scripts\faceCamera.cs" />
-     <Compile Include="Assets\scripts\checkpoint.cs" />
-     <Compile Include="Assets\scripts\Player\Player.cs" />
-     <Compile Include="Assets\MenuManager.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

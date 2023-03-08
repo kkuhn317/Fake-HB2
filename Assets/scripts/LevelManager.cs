@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class LevelManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
 
+        time += GlobalVars.timeRemaining;
+
     }
 
     // Update is called once per frame
@@ -49,7 +52,11 @@ public class LevelManager : MonoBehaviour
         if (canContinue) {
             // if the user presses space, go to the next level
             if (Input.GetKeyDown(KeyCode.Space)) {
-                print("next level");
+                // TODO: transition?
+                // increment level number
+                GlobalVars.levelNumber += 1;
+                GlobalVars.timeRemaining = time;
+                SceneManager.LoadScene(0);
             }
         }
         

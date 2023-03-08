@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class MenuManager : MonoBehaviour
 
     public TMP_Text levelName;
     public TMP_Text levelDescription;
+
+    public GameObject levels;
+
+    public TMP_Text timePool;
 
 
     // Start is called before the first frame update
@@ -54,6 +59,18 @@ public class MenuManager : MonoBehaviour
     public void updateLevelMenu() {
         levelName.text = "Next Up: " + levelNames[GlobalVars.levelNumber];
         levelDescription.text = levelDescriptions[GlobalVars.levelNumber];
+
+        timePool.text = GlobalVars.timeRemaining.ToString("F1");
+
+        // flash the level that is next up
+        GameObject nextup = levels.transform.GetChild(GlobalVars.levelNumber).gameObject;
+        nextup.GetComponent<Animator>().Play("levelflash");
+    }
+
+    // Level Menu buttons
+    public void nextLevel() {
+        // go to the level with the scene number of GlobalVars.levelNumber + 1 (because menu is 0)
+        SceneManager.LoadScene(GlobalVars.levelNumber + 1);
     }
 
 
