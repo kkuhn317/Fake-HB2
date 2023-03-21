@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 
     public bool stopInput = false;
 
+    public bool isFrozen = false;
+
     public bool isRespawning = false;
 
     public Vector3 respawnPoint;
@@ -43,14 +45,41 @@ public class Player : MonoBehaviour
 
         isRespawning = true;
 
-        // turn on player input after 1 second
-        Invoke("enableInput", 1f);
+        // if the level has not been completed or lost, enable input after 1 second
+        if (!levelManager.hasWon && !levelManager.hasLost) {
+            Invoke("enableInput", 1f);
+        }
     }
 
     public void enableInput()
     {
         stopInput = false;
         isRespawning = false;
+    }
+
+    public void freeze()
+    {
+        // we want the player to be completely still
+        // BUT the ball should still be rotating in the same direction
+        
+
+        // reset the velocity
+        rb.velocity = Vector3.zero;
+
+        // remove gravity
+        rb.useGravity = false;
+
+        // if there is a constant force, remove it
+        if (rb.GetComponent<ConstantForce>())
+        {
+            rb.GetComponent<ConstantForce>().force = Vector3.zero;
+        }
+
+        // stop input
+        stopInput = true;
+
+        isFrozen = true;
+
     }
 
 

@@ -21,7 +21,11 @@ public class LevelManager : MonoBehaviour
 
     public AudioClip winSong;
 
+    public AudioClip loseSong;
+
     public bool hasWon = false;
+    public bool hasLost = false;
+
     public bool canContinue = false;
 
     public float deathHeight = -10f;
@@ -47,15 +51,28 @@ public class LevelManager : MonoBehaviour
         if (timerRunning) {
             time -= Time.deltaTime;
             timerText.text = time.ToString("F1");
+
+            if (time <= 0) {
+                time = 0;
+                timerText.text = "0.0";
+                timerRunning = false;
+                GameOver();
+            }
         }
 
         if (canContinue) {
             // if the user presses space, go to the next level
             if (Input.GetKeyDown(KeyCode.Space)) {
                 // TODO: transition?
-                // increment level number
-                GlobalVars.levelNumber += 1;
-                GlobalVars.timeRemaining = time;
+                if (hasWon) {
+                    // increment level number
+                    GlobalVars.levelNumber += 1;
+                    GlobalVars.timeRemaining = time;
+                } else if (hasLost) {
+                    // reset the game
+                    GlobalVars.levelNumber = -1;
+                    GlobalVars.timeRemaining = 0;
+                }
                 SceneManager.LoadScene(0);
             }
         }
@@ -63,14 +80,20 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    public void stopPlayer() {
-        //GameObject player = GameObject.FindWithTag("Player");
-
-
+    public void stopPlayerInput() {
         // find all "Player" objects and stop them
         foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player")) {
             if (p.GetComponent<Player>() != null) {
                 p.GetComponent<Player>().stopInput = true;
+            }
+        }
+    }
+
+    public void freezePlayer() {
+        // find all "Player" objects and freeze them
+        foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player")) {
+            if (p.GetComponent<Player>() != null) {
+                p.GetComponent<Player>().freeze();
             }
         }
 
@@ -86,7 +109,7 @@ public class LevelManager : MonoBehaviour
             GlobalVars.timeRemaining = time;
 
             // stop player
-            stopPlayer();
+            stopPlayerInput();
 
             // update the win screen
             WinTimeRemaining.text = time.ToString("F1");
@@ -101,15 +124,34 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void GameOver() {
+        hasLost = true;
+
+        // freeze the player
+        freezePlayer();
+
+
+        // play game over song
+        audioSource.clip = loseSong;
+        audioSource.loop = false;
+        audioSource.Play();
+
+        // show game over screen
+        Invoke("showGameOver", 2);
+
+
+    }
+
     void showWin() {
         animator.Play("GoalReached");
         canContinue = true;
     }
 
-
-
+    void showGameOver() {
+        animator.Play("TimeUp");
+        canContinue = true;
+    }
     
-
     public void OutOfTime() {
 
     }
