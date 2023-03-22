@@ -7,8 +7,17 @@ public class Cam : MonoBehaviour {
 	// Start is called before the first frame update
     void Start()
     {
-		camRotationX = transform.rotation.eulerAngles.x;
-		camRotationZ = transform.rotation.eulerAngles.z;
+		findPlayer();
+
+		// save the rotation
+		camRotation = transform.rotation;
+		newCamRotation = camRotation;
+
+		// save the focal point
+		focalPoint = objectToFollow.position + offset;
+
+		// set the camera position
+		transform.position = focalPoint + (transform.rotation * Vector3.forward * -distance);
 
     }
 
@@ -16,20 +25,26 @@ public class Cam : MonoBehaviour {
 		objectToFollow = GameObject.FindWithTag("Player").transform;
 	}
 
-	void lookOnly() {
-        transform.LookAt(objectToFollow);
-    }
 
-
-	public void MoveToTarget()
+	private void MoveToTarget()
 	{
-		//Vector3 _targetPos = objectToFollow.position + 
-		//					 objectToFollow.forward * offset.z + 
-		//					 objectToFollow.right * offset.x + 
-		//					 objectToFollow.up * offset.y;
-		
 		Vector3 _targetPos = objectToFollow.position + offset;
-		transform.position = Vector3.Lerp(transform.position, _targetPos, followSpeed * Time.deltaTime);
+		//transform.position = Vector3.Lerp(transform.position, _targetPos, followSpeed * Time.deltaTime);
+
+		// move the focal point over time
+		focalPoint = Vector3.Lerp(focalPoint, _targetPos, followSpeed * Time.deltaTime);
+		// move the camera to the focal point
+		transform.position = focalPoint + (transform.rotation * Vector3.forward * -distance);
+	}
+
+	private void RotateCamera() {
+		// rotate the camera around the focal point to the new rotation with the given speed
+		transform.rotation = Quaternion.Lerp(transform.rotation, newCamRotation, rotateSpeed * Time.deltaTime);
+
+		// set the camera position to the focal point
+		transform.position = focalPoint + (transform.rotation * Vector3.forward * -distance);
+
+		
 	}
 
 	private void LateUpdate()
@@ -38,19 +53,27 @@ public class Cam : MonoBehaviour {
 			findPlayer();
 
 		if (!paused) {
-			if (lookOnlyMode) {
-				lookOnly();
-			} else {
-				MoveToTarget();
-			}
+			MoveToTarget();
+			RotateCamera();
 		}
+	}
+
+	public void SetNewRotate(Quaternion rotation, float speed) {
+		newCamRotation = rotation;
+		rotateSpeed = speed;
 	}
 
 	private Transform objectToFollow;
 
+	private Vector3 focalPoint;
+
+	public float distance = 0;
+
 	public Vector3 offset = new Vector3(-7, 8, 7);
 	public float followSpeed = 10;
 	public bool paused = false;
-	public bool lookOnlyMode = false;
-	private float camRotationX, camRotationZ, camRotationY;
+	private Quaternion camRotation;
+	public Quaternion newCamRotation;
+
+	public float rotateSpeed = 0;
 }

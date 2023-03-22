@@ -304,7 +304,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.6
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopInput: 0
+  isFrozen: 0
   isRespawning: 0
   respawnPoint: {x: 0, y: 0, z: 0}
   glow: {fileID: 5246438758496441148}

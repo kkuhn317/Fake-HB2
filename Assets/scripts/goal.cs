@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class goal : MonoBehaviour
 {
+    public int materialIndex = 1;
 
-    public Material goalUnlit;
     public Material goalLit;
 
     private bool hasWon = false;
@@ -42,7 +42,7 @@ public class goal : MonoBehaviour
     private void Win() {
         hasWon = true;
         Material[] mats = GetComponent<Renderer>().materials;
-        mats[1] = goalLit;
+        mats[materialIndex] = goalLit;
         GetComponent<Renderer>().materials = mats;
         levelManager.WinLevel();
     }
