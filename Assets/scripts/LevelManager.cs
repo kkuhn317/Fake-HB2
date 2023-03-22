@@ -130,6 +130,9 @@ public class LevelManager : MonoBehaviour
         // freeze the player
         freezePlayer();
 
+        // white screen flash animation
+        animator.Play("white screen flash");
+
 
         // play game over song
         audioSource.clip = loseSong;

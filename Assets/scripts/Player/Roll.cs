@@ -15,6 +15,7 @@ public class Roll : MonoBehaviour
     private Rigidbody rb;
     private float movementX;
     private float movementY;
+    
 
     // used for mouse movement
     //private float mouseMovementX;
@@ -44,10 +45,15 @@ public class Roll : MonoBehaviour
 
     public GameObject brokenBall;
 
-    [Header("Checkpoints")]
-
+    [Header("Hamster")]
 
     public GameObject hamster;
+
+    [Header("Burger")]
+
+    private int fatness;
+    public GameObject squishHamster;
+
 
     private Player player;
 
@@ -189,7 +195,18 @@ public class Roll : MonoBehaviour
     }
 
     public void breakBall() {
-        Instantiate(brokenBall, transform.position, transform.rotation);
+
+        
+        GameObject brokeball = Instantiate(brokenBall, transform.position, transform.rotation);
+        
+        if (fatness >= 6 ) {
+            brokeball.GetComponent<brokenball>().removeHamster();
+
+            // set the new rotation to the hamster's rotation
+            Quaternion hamsterRotation = hamster.transform.rotation;
+            GameObject squishHamster = Instantiate(this.squishHamster, transform.position, hamsterRotation);
+            Destroy(gameObject);
+        }
 
         player.respawn();
         
@@ -283,14 +300,13 @@ public class Roll : MonoBehaviour
         forceapplied = movement;
 
         if (grounded)
-            rb.AddForce(movement * speed);
+            rb.AddForce(movement * speed * (1 - (fatness * 0.1f)));
         else
             rb.AddForce(movement * airSpeed);
         
 
-
         // stop the hamsterball from going too fast
-        if (Mathf.Sqrt((rb.velocity.x * rb.velocity.x) + (rb.velocity.z * rb.velocity.z)) >= maxVelocity) {
+        if (Mathf.Sqrt((rb.velocity.x * rb.velocity.x) + (rb.velocity.z * rb.velocity.z)) >= maxVelocity* (1 - (fatness * 0.1f))) {
             overmaxSpeed = true;
             //(whatever code you need to add force) in direction of arctan(Vy/Vx)
             rb.AddForce(new Vector3(-rb.velocity.x, 0, -rb.velocity.z).normalized * antiForce);
@@ -316,6 +332,14 @@ public class Roll : MonoBehaviour
         hitPoints.Clear();
         
 	}
+
+
+    public void eatBurger() {
+        // make the hamster bigger
+        hamster.transform.localScale += new Vector3(0.2f, 0.2f, 0.05f);
+        hamster.GetComponent<HamsterRotation>().posOffset += new Vector3(0, 0.1f, 0);
+        fatness += 1;
+    }
 
 
 

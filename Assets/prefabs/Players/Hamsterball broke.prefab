@@ -3884,7 +3884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d011c4dac8e4584ba485f505032cb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hb: {fileID: 7445878789222231911, guid: f0e2b460a85baf6459db03ff13ea87fa, type: 3}
+  hamster: {fileID: 7445878789375153021}
 --- !u!1001 &7751955681885777452
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class checkpoint : MonoBehaviour
     void Start()
     {
         // disable renderer
-        //GetComponent<Renderer>().enabled = false;
+        GetComponent<Renderer>().enabled = false;
     }
 
     // Update is called once per frame

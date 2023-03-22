@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2579308680152241401}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 7836637582823865903}
   - {fileID: 8684547972226435794}
   m_Father: {fileID: 7790879787446482397}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4178081006861737993
 MonoBehaviour:
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f294b02725bf96499830e5c23e773bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  posOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &3844331768373950659
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,8 +251,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9056657885844791177}
-  - {fileID: 722911866760765433}
   - {fileID: 954547304060062986}
+  - {fileID: 722911866760765433}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -421,6 +422,7 @@ MonoBehaviour:
   pitchDivider: -1
   brokenBall: {fileID: 7445878789222231911, guid: a93aa3e33309c094eab13ba2c3225a6b, type: 3}
   hamster: {fileID: 2579308680152241401}
+  squishHamster: {fileID: 5876524222983604486, guid: 20df90822aad1854b9b9fbf99f383d65, type: 3}
 --- !u!95 &6516436327006090911
 Animator:
   serializedVersion: 4
@@ -467,7 +469,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 448413205399931179, guid: 3ff5481c60a1a714a9abb7e1e4b370b7, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 448413205399931179, guid: 3ff5481c60a1a714a9abb7e1e4b370b7, type: 3}
       propertyPath: m_LocalPosition.x

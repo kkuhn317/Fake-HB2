@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class brokenball : MonoBehaviour
 {
-    public GameObject hb;
+    public GameObject hamster;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,5 +24,9 @@ public class brokenball : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void removeHamster() {
+        hamster.SetActive(false);
     }
 }

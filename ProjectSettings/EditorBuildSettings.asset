@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 3cd50923e8a90bd4f8a4e89319c61dbb
   - enabled: 1
+    path: Assets/Scenes/warmup.unity
+    guid: 16cc92e9ff5794b449514f114cc3ecae
+  - enabled: 0
     path: Assets/Scenes/leveltest.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/realtest.unity
     guid: 52985a7d7e6530f4ca22c3000b506826
   m_configObjects: {}

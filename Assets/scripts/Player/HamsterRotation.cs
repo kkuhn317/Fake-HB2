@@ -9,6 +9,8 @@ public class HamsterRotation : MonoBehaviour
     private bool isFrozen = false;
     private Quaternion frozenRotation;
 
+    public Vector3 posOffset = new Vector3(0, 0, 0);
+
 
     void Awake()
     {
@@ -22,6 +24,8 @@ public class HamsterRotation : MonoBehaviour
 
     void LateUpdate()
     {
+        transform.position = transform.parent.position + posOffset;
+
         if (player.isRespawning) {
             transform.rotation = Quaternion.identity;
             return;
@@ -42,12 +46,11 @@ public class HamsterRotation : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(velocity.x, 0, velocity.z));
         }
+
     }
 
     void freeze()
-    {
-        print("freezing hamster");
-        
+    {   
         isFrozen = true;
         frozenRotation = transform.rotation;
 
