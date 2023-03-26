@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/burger.unity
     guid: 440a02e4e231b334cbc32c2307ce4f2b
+  - enabled: 1
+    path: Assets/Scenes/realistic.unity
+    guid: 1f4b46353d725e64382f231bfab333c0
   - enabled: 0
     path: Assets/Scenes/leveltest.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab

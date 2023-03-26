@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -17,10 +18,13 @@ public class MenuManager : MonoBehaviour
 
     public TMP_Text timePool;
 
-
     // Start is called before the first frame update
     void Start()
     {
+
+        // make the mouse visible
+        Cursor.visible = true;
+        
         if (GlobalVars.levelNumber > -1) {
             mainMenu.SetActive(false);
             levelMenu.SetActive(true);
@@ -65,6 +69,12 @@ public class MenuManager : MonoBehaviour
         // flash the level that is next up
         GameObject nextup = levels.transform.GetChild(GlobalVars.levelNumber).gameObject;
         nextup.GetComponent<Animator>().Play("levelflash");
+
+        // for the levels after, play levelhide animation
+        for (int i = GlobalVars.levelNumber + 1; i < levels.transform.childCount; i++) {
+            GameObject level = levels.transform.GetChild(i).gameObject;
+            level.GetComponent<Animator>().Play("levelhide");
+        }
     }
 
     // Level Menu buttons
@@ -74,9 +84,9 @@ public class MenuManager : MonoBehaviour
     }
 
 
-    public string[] levelNames = {"Warm-Up Returns Race", "Speed Race", "Food Race", "Outside Race", "AMOGUS RACE"};
+    private string[] levelNames = {"Warm-Up Race", "Food Race", "Outside Race", "AMOGUS RACE"};
 
-    public string[] levelDescriptions = {"Warm-Up Race returns, but this time better looking than ever! Your remaining time carries over to the next level, so make sure to go as quickly as possible!",
+    private string[] levelDescriptions = {"Warm-Up Race returns, but this time better looking than ever! Your remaining time carries over to the next level, so make sure to go as quickly as possible!",
     "Eat all the burgers you see in this calorie-filled level! As you eat more, you will get fatter and slower, but it might be worth it...",
     "No more are we rolling through colorful abstract levels. This time, we are rolling through the outside world! Watch out for the cars!",
     "In this sussy race, you will figure out who the IMPOSTER is! hopefully it's not you... sussy baka"};

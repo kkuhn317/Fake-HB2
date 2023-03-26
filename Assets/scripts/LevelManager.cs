@@ -8,13 +8,29 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
 
-    public float time;
+    public float raceTime;
+
+    private float prevTime;
 
     public TMP_Text timerText;
 
     public TMP_Text WinTimeRemaining;
 
+    public TMP_Text racetimeAddition;
+
+    public GameObject racetimeBox;
+
     private bool timerRunning = false;
+
+    private bool levelStarted = false;
+    private bool timeAdding = false;
+
+    private bool goShaking = false;
+
+    private Vector2 ogGoPos;
+    public GameObject readysetgo;
+
+    public AudioClip whistle;
 
     private AudioSource audioSource;
     private Animator animator;
@@ -35,25 +51,80 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // TODO: Ready set go
-        timerRunning = true;
+
+        ogGoPos = readysetgo.transform.position;
 
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
 
-        time += GlobalVars.timeRemaining;
+        stopPlayerInput();
 
+        // remove the mouse cursor
+        Cursor.visible = false;
+
+        if (GlobalVars.timeRemaining == 0) {
+            racetimeBox.SetActive(false);
+            timerText.text = raceTime.ToString("F1");
+
+            Invoke("startReadySetGo", 1);
+            
+        } else {
+            prevTime = GlobalVars.timeRemaining;
+
+            racetimeAddition.text = "+" + raceTime.ToString("F1");
+            timerText.text = prevTime.ToString("F1");
+
+            Invoke("timeAdd", 1);
+        }
+
+    }
+
+    void timeAdd() {
+        timeAdding = true;
     }
 
     // Update is called once per frame
     void Update() {
+        if (goShaking) {
+            // shake the GO text
+            Vector2 newPos = ogGoPos + new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
+            readysetgo.transform.position = newPos;
+        }
+
+        if (!levelStarted) {
+            if (timeAdding) {
+                // remove some raceTime from racetime and add it to the timer
+                if (raceTime < 0.2f) {
+                    // raceTime = 0;
+                    // prevTime += raceTime;
+
+                    raceTime += prevTime;
+                    timerText.text = raceTime.ToString("F1");
+                    racetimeAddition.text = "";
+
+                    timeAdding = false;
+                    racetimeBox.SetActive(false);
+
+                    animator.Play("ready set go");
+                    
+                } else {
+                    raceTime -= 0.2f;
+                    prevTime += 0.2f;
+
+                    timerText.text = prevTime.ToString("F1");
+                    racetimeAddition.text = "+" + raceTime.ToString("F1");
+                }
+                
+            }
+            return;
+        }
 
         if (timerRunning) {
-            time -= Time.deltaTime;
-            timerText.text = time.ToString("F1");
+            raceTime -= Time.deltaTime;
+            timerText.text = raceTime.ToString("F1");
 
-            if (time <= 0) {
-                time = 0;
+            if (raceTime <= 0) {
+                raceTime = 0;
                 timerText.text = "0.0";
                 timerRunning = false;
                 GameOver();
@@ -67,7 +138,7 @@ public class LevelManager : MonoBehaviour
                 if (hasWon) {
                     // increment level number
                     GlobalVars.levelNumber += 1;
-                    GlobalVars.timeRemaining = time;
+                    GlobalVars.timeRemaining = raceTime;
                 } else if (hasLost) {
                     // reset the game
                     GlobalVars.levelNumber = -1;
@@ -89,6 +160,15 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void startPlayerInput() {
+        // find all "Player" objects and start them
+        foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player")) {
+            if (p.GetComponent<Player>() != null) {
+                p.GetComponent<Player>().stopInput = false;
+            }
+        }
+    }
+
     public void freezePlayer() {
         // find all "Player" objects and freeze them
         foreach (GameObject p in GameObject.FindGameObjectsWithTag("Player")) {
@@ -106,13 +186,13 @@ public class LevelManager : MonoBehaviour
 
             // stop timer
             timerRunning = false;
-            GlobalVars.timeRemaining = time;
+            GlobalVars.timeRemaining = raceTime;
 
             // stop player
             stopPlayerInput();
 
             // update the win screen
-            WinTimeRemaining.text = time.ToString("F1");
+            WinTimeRemaining.text = raceTime.ToString("F1");
 
             // play win song
             audioSource.clip = winSong;
@@ -157,6 +237,23 @@ public class LevelManager : MonoBehaviour
     
     public void OutOfTime() {
 
+    }
+
+    public void startReadySetGo() {
+        animator.Play("ready set go");
+    }
+
+
+    public void StartGoShake() {
+        goShaking = true;
+        audioSource.PlayOneShot(whistle);
+    }
+
+    public void EndGoShake() {
+        goShaking = false;
+        timerRunning = true;
+        levelStarted = true;
+        startPlayerInput();
     }
 
 }

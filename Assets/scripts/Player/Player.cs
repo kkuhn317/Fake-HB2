@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
 
     private Quaternion startRotation;
 
+    public float mouseMovementX;
+    public float mouseMovementY;
+
 
     public void respawn()
     {
@@ -110,6 +113,17 @@ public class Player : MonoBehaviour
         }
 
 
+        // increase the mouse movement variables every frame until it is called by fixedUpdate
+        // this is so the movements are smooth
+        mouseMovementX += Input.GetAxisRaw("Mouse X");
+        mouseMovementY += Input.GetAxisRaw("Mouse Y");
+
+
+    }
+
+    public void resetMouseMovement() {
+        mouseMovementX = 0;
+        mouseMovementY = 0;
     }
 
     

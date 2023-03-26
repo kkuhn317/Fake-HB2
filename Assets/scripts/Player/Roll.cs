@@ -98,12 +98,13 @@ public class Roll : MonoBehaviour
 		movementX = Input.GetAxisRaw("Horizontal");
 		movementY = Input.GetAxisRaw("Vertical");
 
-        //float sensitivity = PlayerPrefs.GetFloat("Sensitivity", .5f) * 4; 
-        // TODO: Mouse movement?
-        //float sensitivity = .5f * 4;
 
-        //movementX += mouseMovementX * sensitivity;
-        //movementY += mouseMovementY * sensitivity;
+        float sensitivity = .5f * 4;
+
+
+
+        movementX += player.mouseMovementX * sensitivity;
+        movementY += player.mouseMovementY * sensitivity;
 
         //print("x is" + movementX);
         //print("y is" + movementY);
@@ -209,6 +210,7 @@ public class Roll : MonoBehaviour
             // move the squished hamster out of being a child of this object
             squishHamster.transform.parent = null;
             squishHamster.SetActive(true);
+            squishHamster.GetComponent<Player>().stopInput = false;
 
             Destroy(gameObject);
         }
@@ -252,19 +254,10 @@ public class Roll : MonoBehaviour
     }
 
     private void Update() {
-        // increase the mouse movement variables every frame until it is called by fixedUpdate
-        // this is so the movements are smooth
-        //mouseMovementX += Input.GetAxisRaw("Mouse X");
-        //mouseMovementY += Input.GetAxisRaw("Mouse Y");
-
-
         animator.speed = rb.velocity.magnitude / 10;
     }
 
-    //private void resetMouseMovement() {
-    //    mouseMovementX = 0;
-    //    mouseMovementY = 0;
-    //}
+
 
 
 	private void FixedUpdate()
@@ -291,7 +284,8 @@ public class Roll : MonoBehaviour
 
         if (!eightBallMode) {
             GetInput();
-            //resetMouseMovement();
+            player.resetMouseMovement();
+
             //this is the direction in the world space we want to move:
             movement = forward * movementY + right * movementX;
 

@@ -42,8 +42,10 @@ public class wideHampterRoll : MonoBehaviour
         right.Normalize();
 
 
-        float movementX = Input.GetAxisRaw("Horizontal");
-		float movementY = Input.GetAxisRaw("Vertical");
+        float movementX = Input.GetAxisRaw("Horizontal") + player.mouseMovementX;
+		float movementY = Input.GetAxisRaw("Vertical") + player.mouseMovementY;
+
+        player.resetMouseMovement();
 
         var movement = -forward * movementX + right * movementY;
             if (movement.magnitude > 1)

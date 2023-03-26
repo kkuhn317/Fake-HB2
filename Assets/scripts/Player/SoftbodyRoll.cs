@@ -44,7 +44,17 @@ public class SoftbodyRoll : MonoBehaviour
         var camForward = Vector3.Scale(cam.transform.forward, new Vector3(1, 0, 1)).normalized;
         var camRight = cam.transform.right;
 
-        var move = Input.GetAxisRaw("Vertical") * camRight + -Input.GetAxisRaw("Horizontal") * camForward;
+        var moveX = Input.GetAxisRaw("Horizontal") + player.mouseMovementX;
+        var moveY = Input.GetAxisRaw("Vertical") + player.mouseMovementY;
+
+        player.resetMouseMovement();
+
+        var move = moveY * camRight + -moveX * camForward;
+
+        if (move.magnitude > 1)
+            move.Normalize();
+
+
         rigid.AddTorque(move * RollFactor);
 
         // add a little force also

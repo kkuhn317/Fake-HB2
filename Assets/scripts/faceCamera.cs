@@ -22,8 +22,11 @@ public class faceCamera : MonoBehaviour
         // make the game object face the camera
         transform.LookAt(transform.position + cam.forward);
 
-        // constantly make the gameobject pulse in transparency
-        GetComponent<Renderer>().material.color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time * pulseRate, 1f));
+        if (pulseRate > 0) {
+
+            // constantly make the gameobject pulse in transparency
+            GetComponent<Renderer>().material.color = new Color(1f, 1f, 1f, Mathf.PingPong(Time.time * pulseRate, 1f));
+        }
     }
 
     public void turnoff()
