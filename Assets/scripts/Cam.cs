@@ -52,6 +52,9 @@ public class Cam : MonoBehaviour {
 		if (objectToFollow == null)
 			findPlayer();
 
+		if (objectToFollow == null)
+			return;
+
 		if (!paused) {
 			MoveToTarget();
 			RotateCamera();

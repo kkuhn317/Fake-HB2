@@ -79,6 +79,10 @@ public class Roll : MonoBehaviour
         animator = GetComponent<Animator>();
 
         player = GetComponent<Player>();
+
+        if (squishHamster != null) {
+            squishHamster.SetActive(false);
+        }
         
     }
 
@@ -202,9 +206,10 @@ public class Roll : MonoBehaviour
         if (fatness >= 6 ) {
             brokeball.GetComponent<brokenball>().removeHamster();
 
-            // set the new rotation to the hamster's rotation
-            Quaternion hamsterRotation = hamster.transform.rotation;
-            GameObject squishHamster = Instantiate(this.squishHamster, transform.position, hamsterRotation);
+            // move the squished hamster out of being a child of this object
+            squishHamster.transform.parent = null;
+            squishHamster.SetActive(true);
+
             Destroy(gameObject);
         }
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8316824143622497095}
   m_Layer: 0
   m_Name: BrokenBall (1)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1537,7 +1537,7 @@ GameObject:
   - component: {fileID: 7798364154663944844}
   m_Layer: 0
   m_Name: BrokenBall
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3733,7 +3733,7 @@ GameObject:
   - component: {fileID: 8540659210861862481}
   m_Layer: 0
   m_Name: Hamsterball broke
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

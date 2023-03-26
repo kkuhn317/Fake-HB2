@@ -422,7 +422,7 @@ MonoBehaviour:
   pitchDivider: -1
   brokenBall: {fileID: 7445878789222231911, guid: a93aa3e33309c094eab13ba2c3225a6b, type: 3}
   hamster: {fileID: 2579308680152241401}
-  squishHamster: {fileID: 5876524222983604486, guid: 20df90822aad1854b9b9fbf99f383d65, type: 3}
+  squishHamster: {fileID: 0}
 --- !u!95 &6516436327006090911
 Animator:
   serializedVersion: 4
