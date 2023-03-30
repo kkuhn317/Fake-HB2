@@ -60,6 +60,7 @@
      <Compile Include="Assets\scripts\Cam.cs" />
      <Compile Include="Assets\scripts\Player\HamsterRotation.cs" />
      <Compile Include="Assets\scripts\Player\RollBetter.cs" />
+     <Compile Include="Assets\glitchTrigger.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -150,6 +150,10 @@ public class LevelManager : MonoBehaviour
         
     }
 
+    public void stopTimer() {
+        timerRunning = false;
+    }
+
 
     public void stopPlayerInput() {
         // find all "Player" objects and stop them

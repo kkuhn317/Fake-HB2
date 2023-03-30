@@ -11,6 +11,10 @@ public class MenuManager : MonoBehaviour
     public GameObject mainMenu;
     public GameObject levelMenu;
 
+    public Button editorButton;
+
+    public AudioClip creakSound;
+
     public TMP_Text levelName;
     public TMP_Text levelDescription;
 
@@ -24,8 +28,12 @@ public class MenuManager : MonoBehaviour
 
         // make the mouse visible
         Cursor.visible = true;
-        
-        if (GlobalVars.levelNumber > -1) {
+
+        if (GlobalVars.levelNumber > 10) {
+            // game won
+            editorButton.interactable = true;
+            editorButton.gameObject.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        } else if (GlobalVars.levelNumber > -1) {
             mainMenu.SetActive(false);
             levelMenu.SetActive(true);
             updateLevelMenu();
@@ -57,6 +65,7 @@ public class MenuManager : MonoBehaviour
 
     public void quitGame()
     {
+        print("quit game");
         Application.Quit();
     }
 
@@ -81,6 +90,16 @@ public class MenuManager : MonoBehaviour
     public void nextLevel() {
         // go to the level with the scene number of GlobalVars.levelNumber + 1 (because menu is 0)
         SceneManager.LoadScene(GlobalVars.levelNumber + 1);
+    }
+
+    public void onEditorScreenclick() {
+        // play creak sound
+        AudioSource audioSource = Camera.main.gameObject.GetComponent<AudioSource>();
+        audioSource.volume = 1f;
+        audioSource.PlayOneShot(creakSound);
+        audioSource.PlayOneShot(creakSound);
+        audioSource.PlayOneShot(creakSound);
+        Invoke("quitGame", 0.75f);
     }
 
 
