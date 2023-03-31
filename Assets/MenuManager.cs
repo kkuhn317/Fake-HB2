@@ -8,19 +8,27 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
 
+    public GameObject splashScreen;
     public GameObject mainMenu;
     public GameObject levelMenu;
+    public GameObject editorScreen;
 
     public Button editorButton;
+    public GameObject lockImage;
 
     public AudioClip creakSound;
+    public AudioClip lockSound;
+    public AudioClip settingsSound;
 
     public TMP_Text levelName;
     public TMP_Text levelDescription;
 
     public GameObject levels;
-
     public TMP_Text timePool;
+
+    private bool splashScreenShow = true;
+
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -31,19 +39,30 @@ public class MenuManager : MonoBehaviour
 
         if (GlobalVars.levelNumber > 10) {
             // game won
-            editorButton.interactable = true;
-            editorButton.gameObject.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            //editorButton.interactable = true;
+            //editorButton.gameObject.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            lockImage.SetActive(false);
         } else if (GlobalVars.levelNumber > -1) {
             mainMenu.SetActive(false);
+            splashScreen.SetActive(false);
             levelMenu.SetActive(true);
             updateLevelMenu();
         }
+
+        audioSource = Camera.main.GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (splashScreenShow) {
+            if (audioSource.time >= 3.0) {
+                splashScreenShow = false;
+                splashScreen.GetComponent<Animator>().Play("fadeout");
+                Destroy(splashScreen, 1.0f);
+            }
+        }
     }
 
     public void startGame()
@@ -92,9 +111,22 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(GlobalVars.levelNumber + 1);
     }
 
+    public void onSettingsClick() {
+        audioSource.PlayOneShot(settingsSound);
+    }
+
+    public void onEditorButtonClick() {
+        if (GlobalVars.levelNumber > 10) {
+            mainMenu.SetActive(false);
+            editorScreen.SetActive(true);
+            audioSource.Stop();
+        } else {
+            audioSource.PlayOneShot(lockSound);
+        }
+    }
+
     public void onEditorScreenclick() {
         // play creak sound
-        AudioSource audioSource = Camera.main.gameObject.GetComponent<AudioSource>();
         audioSource.volume = 1f;
         audioSource.PlayOneShot(creakSound);
         audioSource.PlayOneShot(creakSound);

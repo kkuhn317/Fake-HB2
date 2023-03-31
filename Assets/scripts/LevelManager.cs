@@ -154,6 +154,10 @@ public class LevelManager : MonoBehaviour
         timerRunning = false;
     }
 
+    public void startTimer() {
+        timerRunning = true;
+    }
+
 
     public void stopPlayerInput() {
         // find all "Player" objects and stop them
@@ -182,6 +186,7 @@ public class LevelManager : MonoBehaviour
         }
 
     }
+
 
     public void WinLevel() {
         if (!hasWon) {

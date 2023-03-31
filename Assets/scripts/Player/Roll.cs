@@ -31,7 +31,7 @@ public class Roll : MonoBehaviour
     public bool hamsterballMode = false;
     public Vector3 forceapplied;
     public bool eightBallMode = false;
-    private Vector3 eightBallHome;
+
 
     [Header("Sound Effects")]
     public AudioClip RollSound;
@@ -61,13 +61,8 @@ public class Roll : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
-        if (eightBallMode) {
-            eightBallHome = transform.position;
-            audioSource = GetComponent<AudioSource>();
-            audioSource.clip = hitBallSound;
-        }
 
-        if (GetComponent<AudioSource>() && !eightBallMode) {
+        if (GetComponent<AudioSource>()) {
             audioSource = GetComponent<AudioSource>();
 
             // Note: this should be changed when specific rolling sounds are implemented
@@ -111,83 +106,10 @@ public class Roll : MonoBehaviour
 	}
 
 
-    public void targetPlayer()
-    {
-        movementX = 0;
-        movementY = 0;
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] fakePlayers = GameObject.FindGameObjectsWithTag("fakePlayer");
-        Vector3 directionVector, normalizedVector;
-            foreach (GameObject player in players) {
-                if (Vector3.Distance(transform.position, player.transform.position) < 5 && Vector3.Distance(transform.position, eightBallHome) < 20) {
-                    directionVector = player.transform.position - transform.position;
-                    normalizedVector = new Vector3(directionVector.x, 0, directionVector.z).normalized;
-                    movementX = normalizedVector.x;
-                    movementY = normalizedVector.z;
-                    return;
-                } else {
-                    // if the player is too far away, move the 8ball to the closest fake player
-                    Transform fakePlayerTarget = GetClosestEnemy(fakePlayers.ToList<GameObject>(), transform);
-                        if (!fakePlayerTarget)
-                            return;
-                            
-                        if (Vector3.Distance(transform.position, fakePlayerTarget.transform.position) < 5 && Vector3.Distance(transform.position, eightBallHome) < 20) {
-                            directionVector = fakePlayerTarget.transform.position - transform.position;
-                            normalizedVector = new Vector3(directionVector.x, 0, directionVector.z).normalized;
-                            movementX = normalizedVector.x;
-                            movementY = normalizedVector.z;
-                            return;
-                        }
-                    
-                }
-            }
-
-            // go back home
-            directionVector = eightBallHome - transform.position;
-            normalizedVector = new Vector3(directionVector.x, 0, directionVector.z).normalized;
-            movementX = normalizedVector.x;
-            movementY = normalizedVector.z;
-
-    }
-
-    Transform GetClosestEnemy(List<GameObject> enemies, Transform fromThis)
-    {
-        Transform bestTarget = null;
-        float closestDistanceSqr = Mathf.Infinity;
-        Vector3 currentPosition = fromThis.position;
-        foreach (GameObject potentialTargetObject in enemies)
-        {
-            Transform potentialTarget = potentialTargetObject.transform;
-            Vector3 directionToTarget = potentialTarget.position - currentPosition;
-            float dSqrToTarget = directionToTarget.sqrMagnitude;
-            if (dSqrToTarget < closestDistanceSqr)
-            {
-                closestDistanceSqr = dSqrToTarget;
-                bestTarget = potentialTarget;
-            }
-        }
-        return bestTarget;
-    }
-
     void OnCollisionEnter(Collision other) {
          
         if (other.gameObject.tag == "instaKill") {
             breakBall();
-        }
-
-        //if (eightBallMode && (other.gameObject.tag == "Player" || other.gameObject.tag == "8Ball")) {
-        if (eightBallMode && (other.gameObject.GetComponent<Rigidbody>())) {
-
-            // Calculate Angle Between the collision point and the player
-            Vector3 dir = other.contacts[0].point - transform.position;
-            // We then get the opposite (-Vector3) and normalize it
-            dir = dir.normalized;
-
-            // And finally we add force in the direction of dir and multiply it by force. 
-            // This will push back the player
-            other.gameObject.GetComponent<Rigidbody>().AddForce(dir*800);
-            GetComponent<Rigidbody>().AddForce(dir*-500);
-            audioSource.Play();
         }
 
         // Calculate whether the ball should break from hitting the ground too hard
@@ -282,19 +204,16 @@ public class Roll : MonoBehaviour
 
         Vector3 movement;
 
-        if (!eightBallMode) {
-            GetInput();
-            player.resetMouseMovement();
 
-            //this is the direction in the world space we want to move:
-            movement = forward * movementY + right * movementX;
+        GetInput();
+        player.resetMouseMovement();
 
-            if (movement.magnitude > 1)
-                movement.Normalize();
-        } else {
-            targetPlayer();
-            movement = new Vector3(movementX, 0, movementY);
-        }
+        //this is the direction in the world space we want to move:
+        movement = forward * movementY + right * movementX;
+
+        if (movement.magnitude > 1)
+            movement.Normalize();
+
 
         forceapplied = movement;
 

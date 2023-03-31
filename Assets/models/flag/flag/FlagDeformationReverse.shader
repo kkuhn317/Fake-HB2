@@ -39,7 +39,8 @@ Shader "N3K/FlagDeformationReverse"
             {
 
                 v2f o;
-                v.vertex.y -= cos((v.vertex.x + _Time.y * 2) * 1) * 0.2 * (v.vertex.x - 5);
+                //                                    speed frequency amplitude
+                v.vertex.y -= cos((v.vertex.x + _Time.y * 5) * 1) * 0.2 * (v.vertex.x - 5);
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
                 // NEW STUFF HERE
