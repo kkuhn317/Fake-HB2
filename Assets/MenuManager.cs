@@ -135,10 +135,10 @@ public class MenuManager : MonoBehaviour
     }
 
 
-    private string[] levelNames = {"Warm-Up Race", "Food Race", "Outside Race", "AMOGUS RACE"};
+    private string[] levelNames = {"Warm-Up Race", "Food Race", "Outside Race", "???"};
 
     private string[] levelDescriptions = {"Warm-Up Race returns, but this time better looking than ever! Your remaining time carries over to the next level, so make sure to go as quickly as possible!",
     "Eat all the burgers you see in this calorie-filled level! As you eat more, you will get fatter and slower, but it might be worth it...",
-    "No more are we rolling through colorful abstract levels. This time, we are rolling through the outside world! Watch out for the cars!",
-    "In this sussy race, you will figure out who the IMPOSTER is! hopefully it's not you... sussy baka"};
+    "No more are we rolling through colorful abstract levels. This time, we are rolling through the outside world! Watch out for the 8-ball!",
+    "?̶̻̓̿͗͛͊̉͒̔͐͘͘͘̚?̸̝͓̬̳̫̝̯̀́̀̓̈́̾͘?̵̧̥̙̼̖̠̪̭̺͊́̋̿̂̍̍͝͝ͅ?̴̮͕̫͗͆̔̅́͝?̶͕͚̹̩͖̦̭̭̬̦͉̙͕͎̐͛̔͛̿̾̌̐͛͑͘͜͠͝?̵̧̡͎͉̖̘̱̳̮͈͙͉̜͂̊̾̆ͅͅ?̴̢̡̘͈̞̣̹̘̱̜̼͇̱̙͒̀̌͂͐͗̕?̶̡͍̖̖̙͎̩͋̏͜"};
 }
